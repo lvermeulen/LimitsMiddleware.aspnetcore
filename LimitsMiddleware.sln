@@ -1,0 +1,44 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E129E87-1111-4E18-A73E-E64A2DA359BE}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		global.json = global.json
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{248F98EE-CEF1-4190-8020-DFA2174ED82E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{9F696FF8-7F23-4CB3-A875-1256F09EDBD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{50AB4FEC-B1AC-45F8-B7EE-E636F3619AAD}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LimitsMiddleware.Demo", "demo\LimitsMiddleware.Demo\LimitsMiddleware.Demo.xproj", "{962B06A8-4D78-4438-878D-34A0F86F2A5C}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LimitsMiddleware", "src\LimitsMiddleware\LimitsMiddleware.xproj", "{A61B64D6-3D62-472E-B9BA-2435166C6786}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{962B06A8-4D78-4438-878D-34A0F86F2A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962B06A8-4D78-4438-878D-34A0F86F2A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962B06A8-4D78-4438-878D-34A0F86F2A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962B06A8-4D78-4438-878D-34A0F86F2A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A61B64D6-3D62-472E-B9BA-2435166C6786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61B64D6-3D62-472E-B9BA-2435166C6786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61B64D6-3D62-472E-B9BA-2435166C6786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61B64D6-3D62-472E-B9BA-2435166C6786}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{962B06A8-4D78-4438-878D-34A0F86F2A5C} = {9F696FF8-7F23-4CB3-A875-1256F09EDBD5}
+	EndGlobalSection
+EndGlobal

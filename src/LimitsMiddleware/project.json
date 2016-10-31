@@ -1,0 +1,52 @@
+{
+  "title": "Limits Middleware for AspNetCore",
+  "version": "0.0.0-alpha",
+  "authors": [ "Damian Hickey" ],
+  "copyright": "Copyright 2016",
+  "description": "Middleware that applies limits to an aspnetcore pipeline. Currently supported are max bandwidth, max concurrent requests, connection timeout, max request content length, max querystring length and max url length.",
+
+  "buildOptions": {
+    "define": [ "LIBLOG_PORTABLE" ],
+    "optimize": true,
+    "outputName": "LimitsMiddleware.AspNetCore",
+    "xmlDoc": false
+  },
+
+  "packOptions": {
+    "owners": [ "Damian Hickey" ],
+    "requireLicenseAcceptance": false,
+    "summary": "Limits Middleware for AspNetCore",
+    "tags": [ "owin", "middleware", "throttling", "limits" ],
+    "projectUrl": "https://github.com/damianh/LimitsMiddleware",
+    "licenseUrl": "https://github.com/damianh/LimitsMiddleware/blob/master/LICENSE",
+    "iconUrl": "http://i.imgur.com/WnKfKOC.png?1",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/damianh/LimitsMiddleware"
+    }
+  },
+
+  "dependencies": {
+    //"LimitsMiddleware": { "target": "project" },
+    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
+    "Microsoft.AspNetCore.Http": "1.0.0",
+    "Microsoft.AspNetCore.Http.Extensions": "1.0.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0"
+  },
+
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+      }
+    },
+    "netstandard1.6": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "Microsoft.CSharp": "4.0.1",
+        "System.Dynamic.Runtime": "4.0.11",
+        "System.Globalization.Extensions": "4.0.1",
+        "System.Security.Claims": "4.0.1"
+      }
+    }
+  }
+}
