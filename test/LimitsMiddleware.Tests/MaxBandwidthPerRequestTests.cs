@@ -5,6 +5,7 @@
     using System.IO;
     using System.Net;
     using System.Net.Http;
+    using System.Reflection;
     using System.Threading.Tasks;
     using Extensions;
     using Microsoft.AspNetCore.Builder;
@@ -58,11 +59,12 @@
 
         private static HttpClient CreateHttpClient(int maxKiloBytesPerSecond = -1)
         {
+            string currentDirectory = Path.GetDirectoryName(typeof(MaxBandwidthPerRequestTests).GetTypeInfo().Assembly.Location);
             var builder = new WebHostBuilder().Configure(app => app
                 .MaxBandwidthPerRequest(maxKiloBytesPerSecond)
                 .UseStaticFiles(new StaticFileOptions()
                 {
-                    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files")),
+                    FileProvider = new PhysicalFileProvider(Path.Combine(currentDirectory, "Files")),
                     RequestPath = new PathString("")
                 }));
 
