@@ -1,5 +1,5 @@
 {
-  "title": "Limits Middleware for AspNetCore",
+  "title": "Limits Middleware for ASP.NET Core",
   "version": "1.0.0-alpha",
   "authors": [ "Luk Vermeulen" ],
   "copyright": "Copyright 2016",
@@ -15,7 +15,7 @@
   "packOptions": {
     "owners": [ "Luk Vermeulen" ],
     "requireLicenseAcceptance": false,
-    "summary": "Limits Middleware for AspNetCore",
+    "summary": "Limits Middleware for ASP.NET Core",
     "tags": [ "middleware", "throttling", "limits", "aspnetcore" ],
     "projectUrl": "https://github.com/lvermeulen/LimitsMiddleware.aspnetcore",
     "licenseUrl": "https://github.com/lvermeulen/LimitsMiddleware.aspnetcore/blob/master/LICENSE",
