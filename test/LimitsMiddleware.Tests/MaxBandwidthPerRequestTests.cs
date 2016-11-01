@@ -20,7 +20,7 @@
     {
         [Theory]
         [InlineData("file_64KB.txt", 8000, 15)]
-        [InlineData("file_64KB.txt", 16000, 4)]
+        [InlineData("file_64KB.txt", 16000, 5)]
         [InlineData("file_512KB.txt", 100000, 5)]
         [InlineData("file_512KB.txt", 200000, 2)]
         public async Task When_bandwidth_is_applied_then_time_to_receive_data_should_be_longer(string file, int maxKiloBytesPerSeconds, int approximateSeconds)
