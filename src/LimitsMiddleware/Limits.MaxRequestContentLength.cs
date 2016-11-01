@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using LimitsMiddleware.Logging;
 using Microsoft.AspNetCore.Http;
 
@@ -13,7 +14,7 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="maxContentLength">Maximum length of the content.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         public static MidFunc MaxRequestContentLength(int maxContentLength, string loggerName = null)
         {
             return MaxRequestContentLength(() => maxContentLength, loggerName);
@@ -24,7 +25,7 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="getMaxContentLength">A delegate to get the maximum content length.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getMaxContentLength</exception>
         public static MidFunc MaxRequestContentLength(Func<int> getMaxContentLength, string loggerName = null)
         {
@@ -41,7 +42,7 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="getMaxContentLength">A delegate to get the maximum content length.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getMaxContentLength</exception>
         public static MidFunc MaxRequestContentLength(Func<RequestContext, int> getMaxContentLength, string loggerName = null)
         {
@@ -77,7 +78,7 @@ namespace LimitsMiddleware
                         {
                             if (requestMethod == "PUT" || requestMethod == "POST")
                             {
-                                SetResponseStatusCode(context, 411);
+                                SetResponseStatusCode(context, (int)HttpStatusCode.LengthRequired);
                                 return;
                             }
                             request.Body = new ContentLengthLimitingStream(request.Body, 0);
@@ -87,7 +88,7 @@ namespace LimitsMiddleware
                             if (contentLengthHeaderValue > maxContentLength)
                             {
                                 logger.Info($"Content length of {contentLengthHeaderValue} exceeds maximum of {maxContentLength}. Request rejected.");
-                                SetResponseStatusCode(context, 413);
+                                SetResponseStatusCode(context, (int)HttpStatusCode.RequestEntityTooLarge);
                                 return;
                             }
                             logger.Debug("Content length header check passed.");
@@ -112,12 +113,12 @@ namespace LimitsMiddleware
                     catch (ContentLengthRequiredException)
                     {
                         logger.Info("Content length required. Request canceled and rejected.");
-                        SetResponseStatusCode(context, 411);
+                        SetResponseStatusCode(context, (int)HttpStatusCode.LengthRequired);
                     }
                     catch (ContentLengthExceededException)
                     {
                         logger.Info($"Content length of {maxContentLength} exceeded. Request canceled and rejected.");
-                        SetResponseStatusCode(context, 413);
+                        SetResponseStatusCode(context, (int)HttpStatusCode.RequestEntityTooLarge);
                     }
                 };
         }

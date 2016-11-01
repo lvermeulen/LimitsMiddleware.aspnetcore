@@ -15,7 +15,7 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
         /// <param name="timeout">The timeout.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         public static MidFunc ConnectionTimeout(TimeSpan timeout, string loggerName = null) => ConnectionTimeout(() => timeout, loggerName);
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace LimitsMiddleware
         ///     to supply different values at runtime.
         /// </param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getTimeout</exception>
         public static MidFunc ConnectionTimeout(Func<TimeSpan> getTimeout, string loggerName = null)
         {
@@ -48,7 +48,7 @@ namespace LimitsMiddleware
         ///     to supply different values at runtime.
         /// </param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getTimeout</exception>
         public static MidFunc ConnectionTimeout(Func<RequestContext, TimeSpan> getTimeout, string loggerName = null)
         {

@@ -6,7 +6,7 @@ namespace LimitsMiddleware.Extensions
     public static partial class ApplicationBuilderExtensions
     {
         /// <summary>
-        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the owin pipeline.
+        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="app">The IApplicationBuilder instance.</param>
         /// <param name="maxConcurrentRequests">
@@ -26,7 +26,7 @@ namespace LimitsMiddleware.Extensions
         }
 
         /// <summary>
-        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the owin pipeline.
+        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="app">The IApplicationBuilder instance.</param>
         /// <param name="getMaxConcurrentRequests">
@@ -53,7 +53,7 @@ namespace LimitsMiddleware.Extensions
         }
 
         /// <summary>
-        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the owin pipeline.
+        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="app">The IApplicationBuilder instance.</param>
         /// <param name="getMaxConcurrentRequests">

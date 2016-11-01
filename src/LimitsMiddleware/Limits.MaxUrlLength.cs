@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using LimitsMiddleware.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -37,7 +38,7 @@ namespace LimitsMiddleware
                     if (unescapedUri.Length > maxUrlLength)
                     {
                         logger.Info($"Url \"{unescapedUri}\"(Length: {unescapedUri.Length}) exceeds allowed length of {maxUrlLength}. Request rejected.");
-                        context.Response.StatusCode = 414;
+                        context.Response.StatusCode = (int)HttpStatusCode.RequestUriTooLong;
                     }
                     logger.Debug("Check passed. Request forwarded.");
                     await next(context);

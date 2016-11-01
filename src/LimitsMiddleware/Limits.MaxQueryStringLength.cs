@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using LimitsMiddleware.Logging;
 using Microsoft.AspNetCore.Http;
 
@@ -13,29 +14,25 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="maxQueryStringLength">Maximum length of the query string.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
-        public static MidFunc MaxQueryStringLength(int maxQueryStringLength, string loggerName = null)
-        {
-            return MaxQueryStringLength(_ => maxQueryStringLength, loggerName);
-        }
+        /// <returns>A middleware delegate.</returns>
+        public static MidFunc MaxQueryStringLength(int maxQueryStringLength, string loggerName = null) => 
+            MaxQueryStringLength(_ => maxQueryStringLength, loggerName);
 
         /// <summary>
         ///     Limits the length of the query string.
         /// </summary>
         /// <param name="getMaxQueryStringLength">A delegate to get the maximum query string length.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
-        public static MidFunc MaxQueryStringLength(Func<int> getMaxQueryStringLength, string loggerName = null)
-        {
-            return MaxQueryStringLength(_ => getMaxQueryStringLength(), loggerName);
-        }
+        /// <returns>A middleware delegate.</returns>
+        public static MidFunc MaxQueryStringLength(Func<int> getMaxQueryStringLength, string loggerName = null) => 
+            MaxQueryStringLength(_ => getMaxQueryStringLength(), loggerName);
 
         /// <summary>
         /// Limits the length of the query string.
         /// </summary>
         /// <param name="getMaxQueryStringLength">A delegate to get the maximum query string length.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getMaxQueryStringLength</exception>
         public static MidFunc MaxQueryStringLength(Func<RequestContext, int> getMaxQueryStringLength, string loggerName = null)
         {
@@ -64,7 +61,7 @@ namespace LimitsMiddleware
                         if (unescapedQueryString.Length > maxQueryStringLength)
                         {
                             logger.Info($"Querystring (Length {unescapedQueryString.Length}) too long (allowed {maxQueryStringLength}). Request rejected.");
-                            context.Response.StatusCode = 414;
+                            context.Response.StatusCode = (int)HttpStatusCode.RequestUriTooLong;
                             return;
                         }
                     }

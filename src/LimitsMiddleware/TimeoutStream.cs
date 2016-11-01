@@ -69,14 +69,14 @@ namespace LimitsMiddleware
         {
             if (disposing)
             {
-                _timer.Dispose();
-                _innerStream.Dispose();
+                _timer?.Dispose();
+                //_innerStream?.Dispose();
             }
         }
 
-        public override Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken) => _innerStream.CopyToAsync(destination, bufferSize, cancellationToken);
+        public override Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken) => _innerStream?.CopyToAsync(destination, bufferSize, cancellationToken);
 
-        public override Task FlushAsync(CancellationToken cancellationToken) => _innerStream.FlushAsync(cancellationToken);
+        public override Task FlushAsync(CancellationToken cancellationToken) => _innerStream?.FlushAsync(cancellationToken);
 
         public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
@@ -94,7 +94,7 @@ namespace LimitsMiddleware
         private void Reset()
         {
             _timer = StopTimer();
-            _logger.Debug("Timeout timer reseted.");
+            _logger.Debug("Timeout timer reset.");
             _timer = StartTimer();
         }
     }

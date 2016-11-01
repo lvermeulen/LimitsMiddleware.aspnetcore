@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using LimitsMiddleware.Logging;
 using Microsoft.AspNetCore.Http;
@@ -10,21 +11,19 @@ namespace LimitsMiddleware
     public static partial class Limits
     {
         /// <summary>
-        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the owin pipeline.
+        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="maxConcurrentRequests">
         ///     The maximum number of concurrent requests. Use 0 or a negative
         ///     number to specify unlimited number of concurrent requests.
         /// </param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
-        public static MidFunc MaxConcurrentRequests(int maxConcurrentRequests, string loggerName = null)
-        {
-            return MaxConcurrentRequests(() => maxConcurrentRequests, loggerName);
-        }
+        /// <returns>A middleware delegate.</returns>
+        public static MidFunc MaxConcurrentRequests(int maxConcurrentRequests, string loggerName = null) => 
+            MaxConcurrentRequests(() => maxConcurrentRequests, loggerName);
 
         /// <summary>
-        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the owin pipeline.
+        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="getMaxConcurrentRequests">
         ///     A delegate to retrieve the maximum number of concurrent requests. Allows you
@@ -32,7 +31,7 @@ namespace LimitsMiddleware
         ///     requests.
         /// </param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getMaxConcurrentRequests</exception>
         public static MidFunc MaxConcurrentRequests(Func<int> getMaxConcurrentRequests, string loggerName = null)
         {
@@ -45,7 +44,7 @@ namespace LimitsMiddleware
         }
 
         /// <summary>
-        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the owin pipeline.
+        ///     Limits the number of concurrent requests that can be handled used by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="getMaxConcurrentRequests">
         ///     A delegate to retrieve the maximum number of concurrent requests. Allows you
@@ -53,7 +52,7 @@ namespace LimitsMiddleware
         ///     requests.
         /// </param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getMaxConcurrentRequests</exception>
         public static MidFunc MaxConcurrentRequests(Func<RequestContext, int> getMaxConcurrentRequests, string loggerName = null)
         {
@@ -66,7 +65,7 @@ namespace LimitsMiddleware
                 ? $"{nameof(LimitsMiddleware)}.{nameof(MaxConcurrentRequests)}"
                 : loggerName;
             var logger = LogProvider.GetLogger(loggerName);
-            var concurrentRequestCounter = 0;
+            int concurrentRequestCounter = 0;
 
             return
                 next =>
@@ -86,7 +85,7 @@ namespace LimitsMiddleware
                         {
                             logger.Info($"Limit ({maxConcurrentRequests}). Request rejected.");
                             var response = context.Response;
-                            response.StatusCode = 503;
+                            response.StatusCode = (int)HttpStatusCode.ServiceUnavailable;
                             return;
                         }
                         await next(context);

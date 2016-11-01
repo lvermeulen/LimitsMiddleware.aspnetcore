@@ -6,7 +6,7 @@ namespace LimitsMiddleware.Extensions
     public static partial class ApplicationBuilderExtensions
     {
         /// <summary>
-        ///     Limits the bandwith used globally by the subsequent stages in the owin pipeline.
+        ///     Limits the bandwith used globally by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="app">The IApplicationBuilder instance.</param>
         /// <param name="maxBytesPerSecond">
@@ -27,7 +27,7 @@ namespace LimitsMiddleware.Extensions
         }
 
         /// <summary>
-        ///     Limits the bandwith used globally by the subsequent stages in the owin pipeline.
+        ///     Limits the bandwith used globally by the subsequent stages in the aspnetcore pipeline.
         /// </summary>
         /// <param name="app">The IApplicationBuilder instance.</param>
         /// <param name="getMaxBytesPerSecond">

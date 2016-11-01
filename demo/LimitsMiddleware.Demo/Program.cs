@@ -6,7 +6,7 @@ namespace LimitsMiddleware.Demo
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")

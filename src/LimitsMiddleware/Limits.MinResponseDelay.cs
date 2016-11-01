@@ -22,7 +22,7 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="getMinDelay">A delegate to return the min response delay.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>The OWIN builder instance.</returns>
+        /// <returns>The aspnetcore builder instance.</returns>
         /// <exception cref="System.ArgumentNullException">getMinDelay</exception>
         public static MidFunc MinResponseDelay(Func<int> getMinDelay, string loggerName = null)
         {
@@ -39,7 +39,7 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="getMinDelay">A delegate to return the min response delay.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>The OWIN builder instance.</returns>
+        /// <returns>The aspnetcore builder instance.</returns>
         /// <exception cref="System.ArgumentNullException">getMinDelay</exception>
         public static MidFunc MinResponseDelay(Func<RequestContext, int> getMinDelay, string loggerName = null)
         {
@@ -57,17 +57,14 @@ namespace LimitsMiddleware
         /// <param name="minDelay">The min response delay.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
         /// <returns>A midfunc.</returns>
-        public static MidFunc MinResponseDelay(TimeSpan minDelay, string loggerName = null)
-        {
-            return MinResponseDelay(_ => minDelay, loggerName);
-        }
+        public static MidFunc MinResponseDelay(TimeSpan minDelay, string loggerName = null) => MinResponseDelay(_ => minDelay, loggerName);
 
         /// <summary>
         ///     Adds a minimum delay before sending the response.
         /// </summary>
         /// <param name="getMinDelay">A delegate to return the min response delay.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>The OWIN builder instance.</returns>
+        /// <returns>The aspnetcore builder instance.</returns>
         /// <exception cref="System.ArgumentNullException">getMinDelay</exception>
         public static MidFunc MinResponseDelay(Func<TimeSpan> getMinDelay, string loggerName = null)
         {
@@ -84,7 +81,7 @@ namespace LimitsMiddleware
         /// </summary>
         /// <param name="getMinDelay">A delegate to return the min response delay.</param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>The OWIN builder instance.</returns>
+        /// <returns>The aspnetcore builder instance.</returns>
         /// <exception cref="System.ArgumentNullException">getMinDelay</exception>
         public static MidFunc MinResponseDelay(Func<RequestContext, TimeSpan> getMinDelay, string loggerName = null)
         {

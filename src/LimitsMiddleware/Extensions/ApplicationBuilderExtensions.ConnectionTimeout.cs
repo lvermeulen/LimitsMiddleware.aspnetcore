@@ -64,7 +64,7 @@ namespace LimitsMiddleware.Extensions
         ///     to supply different values at runtime.
         /// </param>
         /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
-        /// <returns>An OWIN middleware delegate.</returns>
+        /// <returns>A middleware delegate.</returns>
         /// <exception cref="System.ArgumentNullException">getTimeout</exception>
         public static IApplicationBuilder ConnectionTimeout(this IApplicationBuilder app, Func<RequestContext, TimeSpan> getTimeout, string loggerName = null)
         {

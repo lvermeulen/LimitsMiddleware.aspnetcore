@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 
 namespace LimitsMiddleware.Extensions
 {
-    public static partial class AppBuilderExtensions
+    public static partial class ApplicationBuilderExtensions
     {
         /// <summary>
         ///     Sets a minimum delay in miliseconds before sending the response.
@@ -82,6 +82,7 @@ namespace LimitsMiddleware.Extensions
         ///     A delegate to retrieve the minimum delay before calling the next stage in the pipeline. Note:
         ///     the delegate should return quickly.
         /// </param>
+        /// <param name="loggerName">(Optional) The name of the logger log messages are written to.</param>
         /// <returns>The IApplicationBuilder instance.</returns>
         public static IApplicationBuilder MinResponseDelay(this IApplicationBuilder app, Func<RequestContext, TimeSpan> getMinDelay, string loggerName = null)
         {
